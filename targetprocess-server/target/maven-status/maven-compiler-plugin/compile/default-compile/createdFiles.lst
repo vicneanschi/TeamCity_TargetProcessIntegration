@@ -1,0 +1,5 @@
+com\shahabhameed\TargetProcessIssueProviderType.class
+com\shahabhameed\TargetProcessIssueProvider.class
+com\shahabhameed\TargetProcessIssueFetcher$TargetProcessFetchFunction.class
+com\shahabhameed\TargetProcessIssueProviderFactory.class
+com\shahabhameed\TargetProcessIssueFetcher.class

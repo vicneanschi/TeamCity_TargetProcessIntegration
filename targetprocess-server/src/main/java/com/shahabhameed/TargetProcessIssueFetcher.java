@@ -60,8 +60,8 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
 
     @NotNull
     public IssueData fetch() {
-      String url = getUrl(host, issueId) + "?format=json";
-      String dashboardUrl = getDashboardUrl(host, issueId);
+      String url = getIssueUrl(host, issueId) + "?format=json";
+      String dashboardUrl = getUrl(host, issueId);
       
       try {
     	  
@@ -152,11 +152,11 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
   @NotNull
   public IssueData getIssue(@NotNull final String _host, @NotNull final String _issueId, @Nullable final org.apache.commons.httpclient.Credentials _credentials)
           throws Exception {
-    String url = getUrl(_host, _issueId);
+    String url = getIssueUrl(_host, _issueId);
     return getFromCacheOrFetch(url, new TargetProcessFetchFunction(_host, _issueId, _credentials));
   }
 
-  public String getUrl(@NotNull final String _host, @NotNull final String _id) {
+  private String getIssueUrl(@NotNull final String _host, @NotNull final String _id) {
     String realId = _id;
     Matcher matcher = myPattern.matcher(_id);
     if (matcher.find()) {
@@ -173,7 +173,7 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
     return url.toString();
   }
   
-  private String getDashboardUrl(@NotNull final String _host, @NotNull final String _id) {
+  public String getUrl(@NotNull final String _host, @NotNull final String _id) {
       String realId = _id;
       Matcher matcher = myPattern.matcher(_id);
       if (matcher.find()) {
@@ -186,7 +186,7 @@ public class TargetProcessIssueFetcher extends AbstractIssueFetcher {
         url.append("/");
       }
       
-      url.append("tp2/entity/");
+      url.append("entity/");
       url.append(realId);
       return url.toString();
       
